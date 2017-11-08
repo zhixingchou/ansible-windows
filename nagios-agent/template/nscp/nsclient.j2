@@ -1,0 +1,24 @@
+[/settings/default]
+password = 123454321
+allowed hosts = {{ nagios_ip_server }}
+ssl = false
+
+[/settings/NRPE/server]
+port = {{ nscp_port }}
+allow arguments = true
+allow nasty characters = true
+verify mode = none
+insecure = true
+
+[/modules]
+CheckHelpers = 1
+CheckEventLog = 1
+CheckNSCP = 1
+CheckDisk = 1
+CheckSystem = 1
+NRPEServer = 1
+CheckExternalScripts = enabled
+
+[/settings/external scripts/scripts]
+# Requires allow arguments=true
+allow arguments = true

@@ -1,0 +1,10 @@
+---
+- name: Windows remove user
+  hosts: windows
+  vars:
+   - username: AnsibleUser
+  tasks:
+   - name: Remove user
+     win_user:
+        name: '{{ username }}'
+        state: absent

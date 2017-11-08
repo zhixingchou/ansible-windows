@@ -1,0 +1,23 @@
+---
+- name: Zabbix IIS check
+  hosts: windows
+  tasks:
+    - name: Create scripts dir
+      win_file:
+        path: 'C:\Zabbix\scripts'
+        state: directory
+
+    - name: Transfer scripts
+      win_copy:
+        src: '{{ playbook_dir }}/../files/win-zabbix-iis/scripts/'
+        dest: C:\Zabbix\scripts\
+
+    - name: Transfer config
+      win_copy:
+        src: '{{ playbook_dir }}/../files/win-zabbix-iis/userparameter_iis.conf'
+        dest: C:\Zabbix\conf\conf.d\userparameter_iis.conf
+
+    - name: Restart zabbix agent
+      win_service:
+        name: 'Zabbix Agent'
+        state: restarted

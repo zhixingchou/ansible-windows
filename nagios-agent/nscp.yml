@@ -1,0 +1,51 @@
+---
+- name: NSCP Agent Install
+  hosts: windows
+  vars:
+  - nagios_ip_server: '10.10.0.5'
+  - nscp_port: '5666'
+  - nscp_url: 'https://github.com/mickem/nscp/releases/download/0.5.1.45/NSCP-0.5.1.45-x64.msi'
+  tasks:
+  - name: Download NSCP install file
+    win_get_url:
+        url: '{{ nscp_url }}'
+        dest: 'C:\NSCP.msi'
+
+  - name: Install NSCP agent
+    win_msi:
+      path: 'C:\Temp\NSCP.msi'
+      wait: yes
+
+  - name: Delete NSCP install file
+    win_file:
+        path: 'C:\Temp\NSCP.msi'
+        state: absent
+
+  - name: Transfer new config
+    win_template:
+        src: '{{ playbook_dir }}/template/nscp/nsclient.j2'
+        dest: 'C:\Program Files\NSClient++\nsclient.ini'
+
+  - name: Restart NSCP
+    win_service:
+        name: 'NSClient++ Monitoring Agent'
+        state: restarted
+
+  - name: Delete default NSCP agent firewall rule
+    win_firewall_rule:
+        name: 'NSClient++ Monitoring Agent'
+        action: allow
+        direction: in
+        protocol: tcp
+        state: absent
+
+  - name: Add new NSCP agent firewall rule with port and nagios-server IP
+    win_firewall_rule:
+        name: 'NSClient++ Monitoring Agent'
+        localport: '{{ nscp_port }}'
+        action: allow
+        direction: in
+        protocol: tcp
+        remoteip: '{{ nagios_ip_server }}'
+        state: present
+        enabled: yes

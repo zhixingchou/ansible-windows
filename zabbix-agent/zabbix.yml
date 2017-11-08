@@ -1,0 +1,42 @@
+---
+- name: Zabbix Agent Install
+  hosts: windows
+  vars:
+  - zabbix_ip_server: '10.10.10.5'
+  tasks:
+    - name: Create zabbix dir
+      win_file:
+        path: 'C:\Zabbix'
+        state: directory
+
+    - name: Transfer zabbix agent without config
+      win_copy:
+        src: '{{ playbook_dir }}/../files/win-zabbix-agent/Zabbix/'
+        dest: C:\Zabbix\
+
+    - name: Make config from template
+      win_template:
+        src: '{{ playbook_dir }}/template/zabbix/zabbix_agentd.j2'
+        dest: 'C:\Zabbix\conf\zabbix_agentd.win.conf'
+
+    - name: Create dir for custom config
+      win_file:
+        path: 'C:\Zabbix\conf\conf.d'
+        state: directory
+
+    - name: Install zabbix agent
+      win_command: CMD /C "C:\Zabbix\bin\win64\zabbix_agentd.exe --config C:\Zabbix\conf\zabbix_agentd.win.conf --install"
+
+    - name: Start zabbix agent
+      win_command: CMD /C "C:\Zabbix\bin\win64\zabbix_agentd.exe --config C:\Zabbix\conf\zabbix_agentd.win.conf --start"
+
+    - name: Add firewall rule
+      win_firewall_rule:
+        name: 'Zabbix-Agent'
+        localport: '10050'
+        action: allow
+        direction: in
+        protocol: tcp
+        remoteip: '{{ zabbix_ip_server }}'
+        state: present
+        enabled: yes

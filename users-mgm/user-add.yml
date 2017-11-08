@@ -1,0 +1,15 @@
+---
+- name: Windows add user
+  hosts: windows
+  vars:
+   - username: AnsibleUser
+   - userpass: AnsiblePass123
+  tasks:
+   - name: Add new user
+     win_user:
+        name: '{{ username }}'
+        password: '{{ userpass }}'
+        state: present
+        groups:
+#          - 'Administrators'
+          - 'Users'
