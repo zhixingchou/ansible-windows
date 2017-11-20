@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.4</version>
-    <date>2017-11-08T18:37:10Z</date>
+    <date>2017-11-20T15:42:36Z</date>
     <groups>
         <group>
             <name>Templates</name>
@@ -9,9 +9,9 @@
     </groups>
     <templates>
         <template>
-            <template>Template LSI RAID</template>
-            <name>Template LSI RAID Windows</name>
-            <description>LSI MegaRaid Check for Windows (with active agent)</description>
+            <template>Template LSI or PERC RAID</template>
+            <name>Template LSI/PERC RAID Windows</name>
+            <description>LSI MegaRaid and PERC Check for Windows (with active agent)</description>
             <groups>
                 <group>
                     <name>Templates</name>
@@ -19,21 +19,21 @@
             </groups>
             <applications>
                 <application>
-                    <name>LSI RAID adapter</name>
+                    <name>RAID adapter</name>
                 </application>
                 <application>
-                    <name>LSI RAID BBU</name>
+                    <name>RAID BBU</name>
                 </application>
                 <application>
-                    <name>LSI RAID Logical Volume</name>
+                    <name>RAID Logical Volume</name>
                 </application>
                 <application>
-                    <name>LSI RAID Physical Volume</name>
+                    <name>RAID Physical Volume</name>
                 </application>
             </applications>
             <items>
                 <item>
-                    <name>LSI RAID Discovery</name>
+                    <name>RAID Discovery</name>
                     <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
@@ -64,7 +64,7 @@
                     <inventory_link>0</inventory_link>
                     <applications>
                         <application>
-                            <name>LSI RAID adapter</name>
+                            <name>RAID adapter</name>
                         </application>
                     </applications>
                     <valuemap/>
@@ -139,7 +139,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>LSI RAID adapter</name>
+                                    <name>RAID adapter</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -181,7 +181,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>LSI RAID adapter</name>
+                                    <name>RAID adapter</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -261,7 +261,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>LSI RAID BBU</name>
+                                    <name>RAID BBU</name>
                                 </application>
                             </applications>
                             <valuemap>
@@ -305,7 +305,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>LSI RAID BBU</name>
+                                    <name>RAID BBU</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -347,7 +347,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>LSI RAID BBU</name>
+                                    <name>RAID BBU</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -389,7 +389,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>LSI RAID BBU</name>
+                                    <name>RAID BBU</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -431,7 +431,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>LSI RAID BBU</name>
+                                    <name>RAID BBU</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -444,7 +444,7 @@
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>{Template LSI RAID:hw.raid.bbu[{#ADAPTER_ID},&quot;bbu_state&quot;].last()}=1</expression>
+                            <expression>{Template LSI or PERC RAID:hw.raid.bbu[{#ADAPTER_ID},&quot;bbu_state&quot;].last()}=1</expression>
                             <recovery_mode>0</recovery_mode>
                             <recovery_expression/>
                             <name>{HOST.NAME} LSI RAID: BBU is not in optimal state on adapter:{#ADAPTER_ID}</name>
@@ -460,7 +460,7 @@
                             <tags/>
                         </trigger_prototype>
                         <trigger_prototype>
-                            <expression>{Template LSI RAID:hw.raid.bbu[{#ADAPTER_ID},&quot;state_of_charge&quot;].avg(#3)}&lt;55</expression>
+                            <expression>{Template LSI or PERC RAID:hw.raid.bbu[{#ADAPTER_ID},&quot;state_of_charge&quot;].avg(#3)}&lt;55</expression>
                             <recovery_mode>0</recovery_mode>
                             <recovery_expression/>
                             <name>{HOST.NAME} LSI RAID: BBU on adapter:{#ADAPTER_ID} charge capacity degraded</name>
@@ -476,7 +476,7 @@
                             <tags/>
                         </trigger_prototype>
                         <trigger_prototype>
-                            <expression>{Template LSI RAID:hw.raid.bbu[{#ADAPTER_ID},&quot;bbu_state&quot;].nodata(720)}=1</expression>
+                            <expression>{Template LSI or PERC RAID:hw.raid.bbu[{#ADAPTER_ID},&quot;bbu_state&quot;].nodata(720)}=1</expression>
                             <recovery_mode>0</recovery_mode>
                             <recovery_expression/>
                             <name>{HOST.NAME} LSI RAID: RAID info is outdated on {HOST.NAME}</name>
@@ -560,7 +560,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>LSI RAID Physical Volume</name>
+                                    <name>RAID Physical Volume</name>
                                 </application>
                             </applications>
                             <valuemap>
@@ -604,7 +604,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>LSI RAID Physical Volume</name>
+                                    <name>RAID Physical Volume</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -646,7 +646,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>LSI RAID Physical Volume</name>
+                                    <name>RAID Physical Volume</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -688,7 +688,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>LSI RAID Physical Volume</name>
+                                    <name>RAID Physical Volume</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -730,7 +730,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>LSI RAID Physical Volume</name>
+                                    <name>RAID Physical Volume</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -743,7 +743,7 @@
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>{Template LSI RAID:hw.raid.physical_disk[{#ADAPTER_ID},{#ENCLOSURE_ID},{#PDRIVE_ID},&quot;media_errors&quot;].last(0)}&lt;&gt;0</expression>
+                            <expression>{Template LSI or PERC RAID:hw.raid.physical_disk[{#ADAPTER_ID},{#ENCLOSURE_ID},{#PDRIVE_ID},&quot;media_errors&quot;].last(0)}&lt;&gt;0</expression>
                             <recovery_mode>0</recovery_mode>
                             <recovery_expression/>
                             <name>{HOST.NAME} LSI RAID: Disk have media errors Adapter:{#ADAPTER_ID},ENC:{#ENCLOSURE_ID},Disk:{#PDRIVE_ID}</name>
@@ -759,7 +759,7 @@
                             <tags/>
                         </trigger_prototype>
                         <trigger_prototype>
-                            <expression>{Template LSI RAID:hw.raid.physical_disk[{#ADAPTER_ID},{#ENCLOSURE_ID},{#PDRIVE_ID},&quot;predictive_errors&quot;].last(0)}&lt;&gt;0</expression>
+                            <expression>{Template LSI or PERC RAID:hw.raid.physical_disk[{#ADAPTER_ID},{#ENCLOSURE_ID},{#PDRIVE_ID},&quot;predictive_errors&quot;].last(0)}&lt;&gt;0</expression>
                             <recovery_mode>0</recovery_mode>
                             <recovery_expression/>
                             <name>{HOST.NAME} LSI RAID: Disk have predictive errors Adapter:{#ADAPTER_ID},ENC:{#ENCLOSURE_ID},Disk:{#PDRIVE_ID}</name>
@@ -775,7 +775,7 @@
                             <tags/>
                         </trigger_prototype>
                         <trigger_prototype>
-                            <expression>{Template LSI RAID:hw.raid.physical_disk[{#ADAPTER_ID},{#ENCLOSURE_ID},{#PDRIVE_ID},&quot;firmware_state&quot;].last()}=1</expression>
+                            <expression>{Template LSI or PERC RAID:hw.raid.physical_disk[{#ADAPTER_ID},{#ENCLOSURE_ID},{#PDRIVE_ID},&quot;firmware_state&quot;].last()}=1</expression>
                             <recovery_mode>0</recovery_mode>
                             <recovery_expression/>
                             <name>{HOST.NAME} LSI RAID: Disk state Adapter:{#ADAPTER_ID},ENC:{#ENCLOSURE_ID},Disk:{#PDRIVE_ID} is not Optimal</name>
@@ -859,7 +859,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>LSI RAID Logical Volume</name>
+                                    <name>RAID Logical Volume</name>
                                 </application>
                             </applications>
                             <valuemap/>
@@ -901,7 +901,7 @@
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
-                                    <name>LSI RAID Logical Volume</name>
+                                    <name>RAID Logical Volume</name>
                                 </application>
                             </applications>
                             <valuemap>
@@ -916,7 +916,7 @@
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>{Template LSI RAID:hw.raid.logical_disk[{#ADAPTER_ID},{#VDRIVE_ID},&quot;vd_state&quot;].last()}=1</expression>
+                            <expression>{Template LSI or PERC RAID:hw.raid.logical_disk[{#ADAPTER_ID},{#VDRIVE_ID},&quot;vd_state&quot;].last()}=1</expression>
                             <recovery_mode>0</recovery_mode>
                             <recovery_expression/>
                             <name>{HOST.NAME} LSI RAID: RAID Volume Adapter:{#ADAPTER_ID},ID:{#VDRIVE_ID} state is not Optimal</name>

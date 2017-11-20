@@ -1,5 +1,5 @@
 ---
-- name: Zabbix LSI RAID check
+- name: Zabbix LSI and PERC RAID check
   hosts: windows
   tasks:
     - name: Create scripts dir
@@ -9,18 +9,18 @@
 
     - name: Transfer scripts
       win_copy:
-        src: '{{ playbook_dir }}/../files/win-zabbix-lsi-raid/scripts/'
+        src: '{{ playbook_dir }}/../files/win-zabbix-lsi-perc-raid/scripts/'
         dest: C:\Zabbix\scripts\
 
     - name: Transfer MegaCLI.exe
       win_copy:
-        src: '{{ playbook_dir }}/../files/win-zabbix-lsi-raid/megacli-cmd'
+        src: '{{ playbook_dir }}/../files/win-zabbix-lsi-perc-raid/megacli-cmd'
         dest: C:\Zabbix\
 
     - name: Transfer config
       win_copy:
-        src: '{{ playbook_dir }}/../files/win-zabbix-lsi-raid/userparameter_lsi_raid.conf'
-        dest: C:\Zabbix\conf\conf.d\userparameter_lsi_raid.conf
+        src: '{{ playbook_dir }}/../files/win-zabbix-lsi-raid/userparameter_lsi_perc_raid.conf'
+        dest: C:\Zabbix\conf\conf.d\userparameter_lsi_perc_raid.conf
 
     - name: Restart zabbix agent
       win_service:
