@@ -9,4 +9,4 @@ Anton Golubkin - [MSSQL 2012 / MSSQL 2012 Express Template](https://share.zabbix
 
 Stefano Leandro - [IIS Template](https://github.com/o0ste0o/MyZabbixTemplates)
 
-ArtemK007 - [LSI MegaRaid Template](https://github.com/ArtemK007/Zabbix-LSI-RAID-Monitoring)
+ArtemK007 - [LSI MegaRaid Template](https://github.com/ArtemK007/Zabbix-LSI-RAID-Monitoring) (possibility PERC raid check)
